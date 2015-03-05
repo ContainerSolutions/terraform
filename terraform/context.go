@@ -365,6 +365,13 @@ func (c *Context) Validate() ([]string, []error) {
 	return walker.ValidationWarnings, rerrs.Errors
 }
 
+// Variables will return the mapping of variables that were defined
+// for this Context. If Input was called, this mapping may be different
+// than what was given.
+func (c *Context) Variables() map[string]string {
+	return c.variables
+}
+
 func (c *Context) acquireRun() chan<- struct{} {
 	c.l.Lock()
 	defer c.l.Unlock()
